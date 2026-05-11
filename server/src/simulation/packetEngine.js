@@ -3,7 +3,14 @@ const dijkstra = require('../algorithms/dijkstra');
 const bellmanFord = require('../algorithms/bellmanFord');
 const aStar = require('../algorithms/aStar');
 
-const ALGORITHMS = { bfs, dijkstra, bellmanFord, aStar };
+const ALGORITHMS = { 
+  bfs, 
+  dijkstra, 
+  bellmanFord, 
+  bellman: bellmanFord, 
+  aStar, 
+  astar: aStar 
+};
 
 /**
  * Run a routing algorithm and return all steps + result.
@@ -18,7 +25,7 @@ function computeRoute(graph, { algorithm, source, target }) {
   const algoFn = ALGORITHMS[algorithm];
   if (!algoFn) return { success: false, error: `Unknown algorithm: ${algorithm}` };
 
-  if (algorithm === 'aStar') {
+  if (algorithm === 'aStar' || algorithm === 'astar') {
     return algoFn(adj, source, target, (id) => graph.getNodePosition(id));
   }
   return algoFn(adj, source, target);

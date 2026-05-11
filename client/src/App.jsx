@@ -157,6 +157,11 @@ export default function App() {
     sim.reset();
   };
 
+  const handleAlgorithmChange = (algo) => {
+    setAlgorithm(algo);
+    handleReset();
+  };
+
   // ─── Render ───────────────────────────────────────────────────────────────
   return (
     <div style={{ display: 'flex', width: '100vw', height: '100vh', fontFamily: "'Inter', sans-serif", overflow: 'hidden' }}>
@@ -164,7 +169,7 @@ export default function App() {
 
       <ControlPanel
         nodes={panelNodes}
-        algorithm={algorithm}   setAlgorithm={setAlgorithm}
+        algorithm={algorithm}   setAlgorithm={handleAlgorithmChange}
         source={source}         setSource={setSource}
         target={target}         setTarget={setTarget}
         simMode={simMode}       setSimMode={setSimMode}
