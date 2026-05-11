@@ -29,7 +29,7 @@ app.get('/health', (_, res) => res.json({ status: 'ok', time: Date.now() }));
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
-app.get('(.*)', (req, res) => {
+app.get('*', (req, res) => {
   const indexPath = path.join(clientDistPath, 'index.html');
   res.sendFile(indexPath, (err) => {
     if (err) {
