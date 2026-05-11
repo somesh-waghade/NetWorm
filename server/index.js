@@ -11,6 +11,7 @@ app.use(express.json());
 
 // Serve static files from the React app
 const clientDistPath = path.join(__dirname, '../client/dist');
+console.log(`[NetWorm] Serving static files from: ${clientDistPath}`);
 app.use(express.static(clientDistPath));
 
 const server = http.createServer(app);
@@ -29,7 +30,12 @@ app.get('/health', (_, res) => res.json({ status: 'ok', time: Date.now() }));
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('(.*)', (req, res) => {
-  res.sendFile(path.join(clientDistPath, 'index.html'));
+  const indexPath = path.join(clientDistPath, 'index.html');
+  res.sendFile(indexPath, (err) => {
+    if (err) {
+      res.status(500).send("Frontend build not found. Please run 'npm run build' in the client directory.");
+    }
+  });
 });
 
 const PORT = process.env.PORT || 3001;
