@@ -4,7 +4,9 @@ NetWorm is a full-stack interactive web application designed to visualize and ex
 
 Built with **React, Node.js, Socket.IO, and React Flow**, it brings core computer science concepts to life with a modern, dynamic UI.
 
-![NetWorm Interface](./client/public/favicon.ico) *(UI Screenshots can be added here)*
+<p align="center">
+  <img src="./homepage.png" alt="NetWorm Interface" width="800">
+</p>
 
 ## 🌟 Core Features
 
